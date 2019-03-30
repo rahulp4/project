@@ -22,3 +22,28 @@ def plot_history(history):
   plt.ylim([0,20])
   plt.legend()
   plt.show()
+
+def resultDF(df):
+  resultdf = X_test
+  resultdf['SalePrice'] = hist
+  # resultdf['GrLivArea'] = resultdf['GrLivArea'] * 2000
+
+  print(resultdf)
+  #loss, accuracy = model.evaluate(master_data_train,final_clean_data_train_label, verbose=0)
+  #print('Accuracy: %f' % (accuracy))
+  #print('Loss: %f' % (loss))
+  
+  fig, ax = plt.subplots()
+  ax.scatter(x = resultdf['GrLivArea'], y = resultdf['SalePrice'])
+  plt.ylabel('SalePrice', fontsize=13)
+  plt.xlabel('GrLivArea', fontsize=13)
+  plt.show()
+  
+  
+  
+class myCallback(tf.keras.callbacks.Callback):
+  def on_epoch_end(self, epoch, logs={}):
+    if(logs.get('acc')>0.6):
+      print("\nReached 60% accuracy so cancelling training!")
+      self.model.stop_training = True  
+  
