@@ -46,4 +46,11 @@ class myCallback(tf.keras.callbacks.Callback):
     if(logs.get('acc')>0.6):
       print("\nReached 60% accuracy so cancelling training!")
       self.model.stop_training = True  
-  
+	  
+	  
+import seaborn as sns	  
+def pairPlot():
+	# Seaborn visualization library
+	
+	# Create the default pairplot
+	sns.pairplot(df)
